@@ -1,0 +1,21 @@
+[project]
+name = "openenv-project"
+version = "0.1.0"
+description = "OpenEnv Hackathon Project"
+authors = [{name = "BHAGYA LAKSHMI M S"}]
+requires-python = ">=3.10"
+
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "numpy",
+    "openenv-core>=0.2.0"
+]
+
+[project.scripts]
+server = "inference:app"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
