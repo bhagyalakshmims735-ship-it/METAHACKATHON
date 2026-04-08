@@ -1,6 +1,16 @@
-**Smart Ride Suggestion API**
+---
+title: Smart Ride Suggestion API
+emoji: 🚖
+colorFrom: blue
+colorTo: purple
+sdk: docker
+app_file: app.py
+pinned: false
+---
 
-**Overview**
+# 🚖 Smart Ride Suggestion API
+
+## 📌 Overview
 The Smart Ride Suggestion API is a backend system designed to simulate intelligent ride selection based on availability, ETA (Estimated Time of Arrival), and realistic distance.
 Instead of automatically choosing one service, the system provides neutral recommendations and lets users decide — similar to real-world platforms like Uber, Ola, and Rapido.
 
