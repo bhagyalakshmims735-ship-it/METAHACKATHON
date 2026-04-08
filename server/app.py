@@ -70,17 +70,24 @@ def step(req: RideRequest):
     drop_loc = get_location(drop_clean)
 
     if not pickup_loc or not drop_loc:
-        return {"error": "Invalid location"}
+        return {"error": "Invalid location. Try Hebbal, Whitefield, BTM."}
 
     if "karnataka" not in pickup_loc["address"] or "karnataka" not in drop_loc["address"]:
-        return {"error": "Locations must be within Karnataka"}
+        return {"error": "Locations must be within Karnataka."}
 
-    temp_distance = env.distance_km(pickup_loc["coords"], drop_loc["coords"])
+    temp_distance = env.distance_km(
+        pickup_loc["coords"],
+        drop_loc["coords"]
+    )
 
     if temp_distance > 100:
-        return {"error": "Locations too far"}
+        return {"error": "Locations too far. Choose within same city."}
 
-    result = env.step(pickup_loc["coords"], drop_loc["coords"], req.radius_km)
+    result = env.step(
+        pickup_loc["coords"],
+        drop_loc["coords"],
+        req.radius_km
+    )
 
     result["pickup"] = pickup_clean
     result["drop"] = drop_clean
@@ -93,6 +100,16 @@ def state():
     state = env.get_state()
 
     if not state:
-        return {"message": "No active ride"}
+        return {"message": "No active ride. Use /step first."}
+
+    return state
+
+
+@app.get("/recommend")
+def recommend():
+    state = env.get_state()
+
+    if not state:
+        return {"message": "Run /step first"}
 
     return state
