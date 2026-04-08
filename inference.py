@@ -61,3 +61,8 @@ def run():
     avg_score = sum(scores) / len(scores)
 
     return {"score": avg_score}
+def main(action=None, **kwargs):
+    return {
+        "message": "Smart Ride Suggestion API running",
+        "status": "ok"
+    }

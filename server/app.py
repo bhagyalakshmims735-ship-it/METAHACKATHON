@@ -113,3 +113,13 @@ def recommend():
         return {"message": "Run /step first"}
 
     return state
+
+def main(action=None, **kwargs):
+    if action == "reset":
+        return reset()
+    elif action == "state":
+        return state()
+    elif action == "recommend":
+        return state()
+    else:
+        return {"message": "Smart Ride Suggestion API"}
