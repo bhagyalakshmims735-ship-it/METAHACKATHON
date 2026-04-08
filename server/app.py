@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from ride_env import RideEnv
 from geopy.geocoders import Nominatim
+from inference import main
 
 app = FastAPI()
 env = RideEnv()
@@ -123,3 +124,6 @@ def main(action=None, **kwargs):
         return state()
     else:
         return {"message": "Smart Ride Suggestion API"}
+    @app.get("/openenv")
+def openenv():
+    return main()
