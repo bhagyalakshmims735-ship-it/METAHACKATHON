@@ -66,3 +66,8 @@ def main(action=None, **kwargs):
         "message": "Smart Ride Suggestion API running",
         "status": "ok"
     }
+def main(*args, **kwargs):
+    return {
+        "status": "ok",
+        "message": "Ride Recommendation API ready"
+    }
