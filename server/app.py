@@ -8,11 +8,11 @@ env = RideEnv()
 
 geolocator = Nominatim(user_agent="ride_app", timeout=3)
 
+
 class RideRequest(BaseModel):
     pickup: str
     drop: str
     radius_km: float = 5
-
 
 
 def clean_place(place: str):
@@ -34,7 +34,6 @@ def clean_place(place: str):
         place += " Bangalore"
 
     return place.title()
-
 
 
 def get_location(place: str):
@@ -71,16 +70,15 @@ def step(req: RideRequest):
     drop_loc = get_location(drop_clean)
 
     if not pickup_loc or not drop_loc:
-        return {"error": "Invalid location. Try areas like Hebbal, Whitefield, BTM."}
+        return {"error": "Invalid location"}
 
-    
     if "karnataka" not in pickup_loc["address"] or "karnataka" not in drop_loc["address"]:
-        return {"error": "Locations must be within Karnataka."}
+        return {"error": "Locations must be within Karnataka"}
 
-    
     temp_distance = env.distance_km(pickup_loc["coords"], drop_loc["coords"])
+
     if temp_distance > 100:
-        return {"error": "Locations too far. Choose within same city."}
+        return {"error": "Locations too far"}
 
     result = env.step(pickup_loc["coords"], drop_loc["coords"], req.radius_km)
 
@@ -95,6 +93,6 @@ def state():
     state = env.get_state()
 
     if not state:
-        return {"message": "No active ride. Use /step first."}
+        return {"message": "No active ride"}
 
     return state
