@@ -1,0 +1,11 @@
+name: ride-selection-env
+description: RL environment for selecting optimal ride based on cost and time
+entry_point: env:RideEnv
+
+tasks:
+  - name: easy
+    difficulty: easy
+  - name: medium
+    difficulty: medium
+  - name: hard
+    difficulty: hard
